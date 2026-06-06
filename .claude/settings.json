@@ -10,7 +10,9 @@
       "Bash(curl -s http://localhost:3001/robots.txt)",
       "Bash(curl -s http://localhost:3001/sitemap.xml)",
       "Bash(curl -s http://localhost:3001/)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:3001/services/ai-agent-workflows)",
+      "Bash(curl -s http://localhost:3001/llms.txt)"
     ]
   }
 }

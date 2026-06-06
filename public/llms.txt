@@ -1,0 +1,30 @@
+# Orvnix
+
+> Orvnix is a Kolkata-based studio (West Bengal, India) that designs and builds software, AI, LLM, robotics and drone systems. It embeds with a small number of teams at a time and delivers end to end — from product design and web/mobile development to AI agents, large language models, robotics and autonomous drones.
+
+Orvnix works with clients worldwide and is based in Dum Dum, Kolkata. Engagements are flexible (ongoing, embedded, or fixed-scope one-off). The site is a showcase; the goal is to start a conversation by call or email — Orvnix does not sell products online.
+
+Contact: admin@orvnix.com · [redacted] · Nalta, Bakultala Road, Dum Dum, Kolkata, West Bengal 700028, India
+
+## Services
+
+- [Product Design](https://orvnix.com/services/product-design): Research, UX, UI and design systems.
+- [Web Development](https://orvnix.com/services/web-development): Fast, accessible, production-ready web apps and sites (Next.js, React).
+- [Mobile App Development](https://orvnix.com/services/mobile-app-development): Native-quality iOS and Android apps.
+- [Branding & Creative](https://orvnix.com/services/branding): Identity, motion and creative direction.
+- [AI Agent Workflows](https://orvnix.com/services/ai-agent-workflows): Autonomous AI agents, RAG and workflow automation.
+- [LLM Engineering](https://orvnix.com/services/llm-engineering): Fine-tuning, prompt/context systems and dependable model deployment.
+- [Robotics](https://orvnix.com/services/robotics): Control systems, computer vision and firmware for real-world robots.
+- [Drone Operations](https://orvnix.com/services/drone-operations): Autonomous flight, aerial mapping and data pipelines.
+
+## In-house products (coming soon)
+
+- Agentic AI Calling System: voice AI agents that book, qualify and follow up over the phone.
+- Orvnix CRM: an AI-native CRM built around AI from day one.
+
+## Key pages
+
+- [Home](https://orvnix.com/)
+- [Services overview](https://orvnix.com/#services)
+- [Selected work](https://orvnix.com/#work)
+- [Contact](https://orvnix.com/#contact)

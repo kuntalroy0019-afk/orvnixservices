@@ -1,51 +1,60 @@
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Spotlight from "@/components/Spotlight";
 
 const services = [
   {
     title: "Product Design",
+    slug: "product-design",
     body: "Research, UX, UI and design systems. We turn fuzzy ideas into interfaces people actually want to use.",
     items: ["User flows & wireframes", "High-fidelity UI", "Design systems", "Prototyping", "Usability testing"],
     icon: "design",
   },
   {
     title: "Web Development",
+    slug: "web-development",
     body: "Fast, accessible, production-ready front-ends and the back-ends behind them. Built to scale, not to demo.",
     items: ["Next.js & React", "Marketing sites", "Web apps & dashboards", "APIs & integrations", "Performance & SEO"],
     icon: "web",
   },
   {
     title: "Mobile Apps",
+    slug: "mobile-app-development",
     body: "Native-quality iOS and Android from a single team. From first build to App Store launch and beyond.",
     items: ["iOS & Android", "React Native", "App Store delivery", "Push & analytics", "Ongoing iteration"],
     icon: "mobile",
   },
   {
     title: "Branding & Creative",
+    slug: "branding",
     body: "Identity, motion and the creative direction that ties it together. A brand that looks as good as the product.",
     items: ["Visual identity", "Logo & guidelines", "Motion design", "Pitch & decks", "Creative direction"],
     icon: "brand",
   },
   {
     title: "AI Agent Workflows",
+    slug: "ai-agent-workflows",
     body: "Autonomous agents that do real work — research, support, operations — wired straight into the tools your team already lives in.",
     items: ["Custom AI agents", "RAG & knowledge bases", "Workflow automation", "Tool & API orchestration", "Evals & guardrails"],
     icon: "ai",
   },
   {
     title: "LLM Engineering",
+    slug: "llm-engineering",
     body: "Large language models, made dependable. We fine-tune, ground and deploy models you can actually trust in production.",
     items: ["Fine-tuning & adapters", "Prompt & context systems", "Model deployment", "Inference optimisation", "Safety & evaluation"],
     icon: "llm",
   },
   {
     title: "Robotics",
+    slug: "robotics",
     body: "From prototype to deployment. Control systems, computer vision and firmware for robots that work in the real world.",
     items: ["Control systems", "Computer vision", "Firmware & embedded", "ROS development", "Sensor fusion"],
     icon: "robot",
   },
   {
     title: "Drone Operations",
+    slug: "drone-operations",
     body: "Autonomous flight, aerial data and custom payloads. We build, fly and turn the footage into something useful.",
     items: ["Autonomous flight", "Aerial mapping & survey", "Flight planning", "Payload integration", "Data processing"],
     icon: "drone",
@@ -154,7 +163,14 @@ export default function Services() {
                   <ServiceIcon name={s.icon} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight">{s.title}</h3>
+                  <h3 className="text-xl font-semibold tracking-tight">
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="after:absolute after:inset-0"
+                    >
+                      {s.title}
+                    </Link>
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
                 </div>
               </div>
@@ -168,6 +184,10 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors group-hover:text-accent">
+                Explore {s.title}
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </div>
               </Spotlight>
             </Reveal>
           ))}
