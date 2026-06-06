@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import { faqs } from "@/lib/site";
 
 const plans = [
   {
@@ -49,33 +50,6 @@ const plans = [
     ],
     cta: "Start a conversation",
     featured: false,
-  },
-];
-
-const faqs = [
-  {
-    q: "How quickly can we begin?",
-    a: "Usually within a few business days of our first call. Once we've agreed it's a fit, we're inside your stack and moving on the first piece of work almost immediately.",
-  },
-  {
-    q: "What if we only need you some months?",
-    a: "That's how most of our engagements work. Ease off when the roadmap quietens, pick back up when it doesn't. You're never paying for a team sitting idle.",
-  },
-  {
-    q: "Who actually does the work?",
-    a: "A small, senior, cross-functional team — engineers, AI and LLM specialists, robotics and drone operators, and a creative director. No juniors learning on your time, no offshoring.",
-  },
-  {
-    q: "How is this different from hiring?",
-    a: "Hiring takes months and locks you in. We cover the whole surface — software, AI, hardware — stay accountable to your roadmap, and scale up or down without anyone being re-hired or let go.",
-  },
-  {
-    q: "Do you work in our tools and codebase?",
-    a: "Yes. We embed directly — your repository, your design files, your board, your channel of choice. It should feel like we were always there.",
-  },
-  {
-    q: "Who owns the work?",
-    a: "You do. Every deliverable, file and line of code is yours, handed over as we go. No hostage situations.",
   },
 ];
 

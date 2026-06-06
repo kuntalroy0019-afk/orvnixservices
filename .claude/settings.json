@@ -4,7 +4,13 @@
       "WebFetch(domain:www.verteal.com)",
       "Bash(npx --yes create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm --yes)",
       "Bash(git --version)",
-      "Bash(git init *)"
+      "Bash(git init *)",
+      "Bash(git -c user.name=kuntalroy0019-afk -c user.email=developer@orvnix.com commit -q -m ' *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(curl -s http://localhost:3001/robots.txt)",
+      "Bash(curl -s http://localhost:3001/sitemap.xml)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Read(//tmp/**)"
     ]
   }
 }

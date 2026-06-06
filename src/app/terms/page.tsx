@@ -3,8 +3,9 @@ import LegalShell from "@/components/LegalShell";
 import { site, fullAddress } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Orvnix",
+  title: "Terms & Conditions",
   description: "The terms that govern your use of the Orvnix website and services.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

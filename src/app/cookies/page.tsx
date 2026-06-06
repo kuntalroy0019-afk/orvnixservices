@@ -3,8 +3,9 @@ import LegalShell from "@/components/LegalShell";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — Orvnix",
+  title: "Cookie Policy",
   description: "How and why Orvnix uses cookies and similar technologies.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {

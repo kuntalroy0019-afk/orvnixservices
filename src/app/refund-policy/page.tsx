@@ -3,8 +3,9 @@ import LegalShell from "@/components/LegalShell";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Refund & Cancellation Policy — Orvnix",
+  title: "Refund & Cancellation Policy",
   description: "How cancellations, pauses, and refunds work for Orvnix engagements.",
+  alternates: { canonical: "/refund-policy" },
 };
 
 export default function RefundPage() {

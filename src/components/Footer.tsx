@@ -5,9 +5,9 @@ const cols = [
   {
     title: "Studio",
     links: [
-      { label: "Approach", href: "/#approach" },
-      { label: "Why Us", href: "/#why" },
       { label: "Work", href: "/#work" },
+      { label: "Workspace", href: "/#workspace" },
+      { label: "About", href: "/#studio" },
       { label: "Pricing", href: "/#pricing" },
     ],
   },

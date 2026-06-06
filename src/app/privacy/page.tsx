@@ -3,8 +3,9 @@ import LegalShell from "@/components/LegalShell";
 import { site, fullAddress } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Orvnix",
+  title: "Privacy Policy",
   description: "How Orvnix collects, uses, and protects your personal information.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
