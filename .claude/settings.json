@@ -12,7 +12,14 @@
       "Bash(curl -s http://localhost:3001/)",
       "Read(//tmp/**)",
       "Bash(curl -s http://localhost:3001/services/ai-agent-workflows)",
-      "Bash(curl -s http://localhost:3001/llms.txt)"
+      "Bash(curl -s http://localhost:3001/llms.txt)",
+      "Bash(node -e \"console.log\\('cobe', require\\('./node_modules/cobe/package.json'\\).version\\)\")",
+      "Bash(curl -s -o /dev/null -w \"icon: %{http_code} %{content_type}\\\\n\" http://localhost:3001/icon)",
+      "Bash(curl -s -o /dev/null -w \"apple-icon: %{http_code} %{content_type}\\\\n\" http://localhost:3001/apple-icon)",
+      "Bash(node -e \"console.log\\('resend', require\\('./node_modules/resend/package.json'\\).version\\)\")",
+      "Bash(curl -s -o /dev/null -w \"status: %{http_code}\\\\n\" -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Test\",\"email\":\"t@t.com\",\"message\":\"hi\"}')",
+      "Bash(curl -s -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Test\",\"email\":\"t@t.com\",\"message\":\"hi\"}')",
+      "Bash(npm uninstall *)"
     ]
   }
 }

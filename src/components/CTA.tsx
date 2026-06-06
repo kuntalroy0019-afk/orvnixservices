@@ -8,8 +8,7 @@ export default function CTA() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
+    const data = new FormData(e.currentTarget);
     const name = String(data.get("name") || "");
     const email = String(data.get("email") || "");
     const company = String(data.get("company") || "");
@@ -26,7 +25,7 @@ export default function CTA() {
       message,
     ].join("\n");
 
-    // Genuinely functional: opens the visitor's mail client addressed to us.
+    // Opens a pre-filled draft in the visitor's own email app / webmail.
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -100,16 +99,16 @@ export default function CTA() {
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-2xl text-accent-foreground">
                     ✓
                   </span>
-                  <h3 className="display mt-5 text-2xl">Your draft is ready</h3>
+                  <h3 className="display mt-5 text-2xl">Check your email app</h3>
                   <p className="mt-2 max-w-xs text-sm text-muted">
-                    We&apos;ve opened an email to {site.email} with your details.
-                    Hit send and we&apos;ll be in touch within a day.
+                    We&apos;ve opened a pre-filled draft to {site.email} in your
+                    email app — just hit send and we&apos;ll be in touch.
                   </p>
                   <a
                     href={`mailto:${site.email}`}
                     className="mt-6 text-sm text-accent underline-offset-4 hover:underline"
                   >
-                    Email didn&apos;t open? Write to us directly →
+                    Nothing opened? Email us directly →
                   </a>
                 </div>
               ) : (
@@ -160,11 +159,11 @@ export default function CTA() {
                     type="submit"
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
                   >
-                    Send it over
+                    Compose email
                     <span className="transition-transform group-hover:translate-x-0.5">→</span>
                   </button>
                   <p className="text-center text-xs text-muted-2">
-                    Or just email{" "}
+                    Opens a draft in your own email app, addressed to{" "}
                     <a
                       href={`mailto:${site.email}`}
                       className="text-accent underline-offset-4 hover:underline"
