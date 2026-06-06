@@ -19,7 +19,15 @@
       "Bash(node -e \"console.log\\('resend', require\\('./node_modules/resend/package.json'\\).version\\)\")",
       "Bash(curl -s -o /dev/null -w \"status: %{http_code}\\\\n\" -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Test\",\"email\":\"t@t.com\",\"message\":\"hi\"}')",
       "Bash(curl -s -X POST http://localhost:3001/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Test\",\"email\":\"t@t.com\",\"message\":\"hi\"}')",
-      "Bash(npm uninstall *)"
+      "Bash(npm uninstall *)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"tsc exit: $?\")",
+      "Bash(npm audit *)",
+      "Bash(grep -rhoE 'href=\\\\{?`?\\(mailto|tel\\):[^\"`}]*' src/components)",
+      "Bash(sed -n '1,60p' src/components/Counter.tsx)",
+      "Bash(sed -n '1,45p' src/components/Reveal.tsx)",
+      "Bash(curl -s -o /dev/null -w \"invalid service slug: %{http_code}\\\\n\" http://localhost:3001/services/not-a-real-service)",
+      "Bash(curl -s -D - -o /dev/null http://localhost:3001/)"
     ]
   }
 }
