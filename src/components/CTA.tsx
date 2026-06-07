@@ -68,17 +68,6 @@ export default function CTA() {
                     {site.email}
                   </span>
                 </a>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="group flex items-center gap-3 text-base text-foreground"
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-full border border-border text-accent transition-colors group-hover:border-accent/50">
-                    ☏
-                  </span>
-                  <span className="underline-offset-4 group-hover:underline">
-                    {site.phone}
-                  </span>
-                </a>
                 <div className="flex items-start gap-3 text-base text-muted">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border text-accent">
                     ⌖

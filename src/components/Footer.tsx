@@ -70,12 +70,6 @@ export default function Footer() {
               >
                 {site.email}
               </a>
-              <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
-                className="block text-muted transition-colors hover:text-foreground"
-              >
-                {site.phone}
-              </a>
             </div>
           </div>
 

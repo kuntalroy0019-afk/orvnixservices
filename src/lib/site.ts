@@ -8,7 +8,6 @@ export const site = {
     "Orvnix is a Kolkata-based studio building software, AI, LLM, robotics and drone systems. We embed with a small number of teams and ship what matters.",
   email: "admin@orvnix.com",
   emailAlt: "hello@orvnix.com",
-  phone: "[redacted]",
   foundingYear: "2021",
   address: {
     line1: "Nalta, Bakultala Road, Dum Dum",
