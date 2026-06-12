@@ -1,87 +1,79 @@
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 
 const projects = [
   {
     name: "Mistveil",
     category: "AI · SaaS",
     blurb:
-      "An AI writing companion. We rebuilt the editor from scratch and shipped real-time collaboration in six weeks.",
+      "A concept for an AI writing companion — a focused editor with real-time collaboration built in.",
     img: "/images/work-mistveil.jpeg",
     tag: "Product + Engineering",
-    result: "+40% activation",
   },
   {
     name: "NodeForge",
     category: "Developer tools",
     blurb:
-      "A self-serve infrastructure platform. A redesigned onboarding flow lifted activation by a third in one quarter.",
+      "A self-serve developer-infrastructure concept, with an onboarding flow designed to reach value fast.",
     img: "/images/work-nodeforge.jpeg",
     tag: "Web + Brand",
-    result: "+33% sign-ups",
   },
   {
     name: "Paceline",
     category: "Mobile · Fitness",
     blurb:
-      "iOS and Android built from zero — design system, apps and marketing site shipped in a single engagement.",
+      "A fitness-app concept — design system, iOS/Android UI and marketing site as one coherent product.",
     img: "/images/work-paceline.jpeg",
     tag: "Mobile + Design",
-    result: "4.8★ launch",
   },
   {
     name: "Harborly",
     category: "Fintech",
     blurb:
-      "A full brand and product refresh for a payments startup heading into its Series A round.",
+      "A brand and product concept for a payments startup — identity through to the dashboard.",
     img: "/images/work-harborly.jpeg",
     tag: "Brand + Product",
-    result: "Series A closed",
   },
   {
     name: "Quanta",
     category: "Analytics",
     blurb:
-      "A dashboard rebuild that cut time-to-insight in half and gave the team a design system to grow on.",
+      "An analytics-dashboard concept focused on cutting time-to-insight, with a design system to grow on.",
     img: "/images/work-quanta.jpeg",
     tag: "Product + Engineering",
-    result: "−50% load time",
   },
   {
     name: "Brightkit",
     category: "E-commerce",
     blurb:
-      "Storefront, checkout and brand identity for a DTC launch — live and selling in under eight weeks.",
+      "A DTC e-commerce concept — storefront, checkout and brand identity in a single system.",
     img: "/images/work-brightkit.jpeg",
     tag: "Web + Brand",
-    result: "8-week launch",
   },
   {
     name: "Sentinel",
     category: "AI · Agents",
     blurb:
-      "An autonomous support agent that triages and resolves tickets end-to-end, with humans in the loop for the edge cases.",
+      "A concept for an autonomous support agent that triages and resolves tickets, humans in the loop.",
     img: "/images/work-sentinel.jpeg",
     tag: "AI Agent Workflows",
-    result: "−70% resolution time",
   },
   {
     name: "Atlas Robotics",
     category: "Robotics · Warehouse",
     blurb:
-      "Vision and control software for autonomous warehouse robots, from prototype to a live pilot fleet.",
+      "A robotics concept — vision and control software for autonomous warehouse robots.",
     img: "/images/work-atlas.jpeg",
     tag: "Robotics",
-    result: "12-robot pilot",
   },
   {
     name: "Skyline Aerial",
     category: "Drones · Surveying",
     blurb:
-      "Autonomous mapping drones with a custom flight planner and a pipeline that turns footage into 3D site models.",
+      "A drone-surveying concept — autonomous flight planning and a footage-to-3D pipeline.",
     img: "/images/work-skyline.jpeg",
     tag: "Drone Operations",
-    result: "10× faster surveys",
   },
 ];
 
@@ -91,10 +83,15 @@ export default function Work() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <p className="eyebrow">Selected work</p>
+            <SectionLabel index="05" label="Concept work" meta="SELF-INITIATED" />
             <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-              A few things we&apos;re proud of.
+              Concepts that show how we think.
             </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+              We&apos;re a young studio, so these are self-initiated concepts —
+              honest explorations of the problems we love to solve. Client case
+              studies are on the way.
+            </p>
           </div>
           <a
             href="#contact"
@@ -116,7 +113,7 @@ export default function Work() {
               <div className="relative aspect-[16/11] overflow-hidden">
                 <Image
                   src={p.img}
-                  alt={`${p.name} — ${p.category}`}
+                  alt={`${p.name} — ${p.category} (concept)`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover opacity-80 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
@@ -129,8 +126,8 @@ export default function Work() {
                 <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs text-foreground/90 backdrop-blur">
                   {p.tag}
                 </span>
-                <span className="absolute bottom-4 right-4 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
-                  {p.result}
+                <span className="absolute bottom-4 right-4 rounded-full border border-accent/40 bg-black/40 px-3 py-1 text-xs font-medium text-accent backdrop-blur">
+                  Concept
                 </span>
                 <span className="absolute bottom-4 left-4 font-display text-2xl text-foreground drop-shadow">
                   {p.name}

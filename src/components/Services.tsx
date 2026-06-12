@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Spotlight from "@/components/Spotlight";
+import SectionLabel from "@/components/SectionLabel";
 
 const services = [
   {
@@ -143,7 +144,7 @@ export default function Services() {
     <section id="services" className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">What we do</p>
+          <SectionLabel index="02" label="What we do" meta="CAPABILITIES" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             From the first pixel to the physical machine.
           </h2>

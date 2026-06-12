@@ -1,47 +1,18 @@
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 
-const testimonials = [
+const perks = [
   {
-    quote:
-      "Orvnix shipped more in our first month than our last two hires managed in a quarter. The pace is genuinely unfair.",
-    name: "Ana Ferreira",
-    role: "CEO, NodeForge",
-    initial: "A",
+    title: "Founder-level attention",
+    body: "You work directly with the people building it — no account managers, no handoffs, no diluted effort.",
   },
   {
-    quote:
-      "We briefed them once. They learned the product, the users and the codebase, and just kept delivering. No babysitting.",
-    name: "Tomás Silva",
-    role: "CTO, Quanta",
-    initial: "T",
+    title: "Founding-partner terms",
+    body: "Early partners get our best rates and most flexibility. We're investing in the relationship, not just the invoice.",
   },
   {
-    quote:
-      "Design, engineering and brand from one team meant zero handoff friction. Everything finally looked and felt like one product.",
-    name: "Mariana Lopes",
-    role: "Founder, Brightkit",
-    initial: "M",
-  },
-  {
-    quote:
-      "Being able to pause between funding rounds and pick straight back up saved us a fortune — and a lot of stress.",
-    name: "David Nunes",
-    role: "Founder, Harborly",
-    initial: "D",
-  },
-  {
-    quote:
-      "It feels like having a senior product team on tap. We scale them up before launches and down afterwards. Effortless.",
-    name: "Sofia Reis",
-    role: "Head of Product, Paceline",
-    initial: "S",
-  },
-  {
-    quote:
-      "The backlog we'd been staring at for a year was gone in eight weeks. I still can't quite believe it.",
-    name: "Rafael Costa",
-    role: "Founder, Lumora",
-    initial: "R",
+    title: "Your story, told properly",
+    body: "Be one of our first case studies and we'll make the work — and your results — genuinely shine.",
   },
 ];
 
@@ -50,33 +21,51 @@ export default function Testimonials() {
     <section className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">In their words</p>
+          <SectionLabel index="08" label="Early days, honestly" meta="TRUST" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-            Founders don&apos;t hand us their roadmap lightly.
+            We&apos;d rather earn your trust than fake it.
           </h2>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+            Orvnix is a new studio, so we&apos;re not going to wallpaper this page
+            with invented testimonials. Instead, here&apos;s the honest deal — and
+            why being one of our first partners is the best time to work with us.
+          </p>
         </Reveal>
 
-        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
-          {testimonials.map((t) => (
-            <figure
-              key={t.name}
-              className="break-inside-avoid rounded-2xl border border-border bg-surface p-7"
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
+          {perks.map((p, i) => (
+            <Reveal
+              key={p.title}
+              delay={i * 0.08}
+              className="rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
             >
-              <blockquote className="text-[15px] leading-relaxed text-foreground/90">
-                &ldquo;{t.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-6 flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-surface-2 text-sm font-semibold text-accent">
-                  {t.initial}
-                </span>
-                <span className="text-sm">
-                  <span className="block font-medium text-foreground">{t.name}</span>
-                  <span className="text-muted">{t.role}</span>
-                </span>
-              </figcaption>
-            </figure>
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-surface-2 font-display text-lg text-accent">
+                {i + 1}
+              </div>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight">
+                {p.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{p.body}</p>
+            </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-accent/30 bg-surface-2 p-7 sm:flex-row sm:items-center sm:p-9">
+          <div>
+            <h3 className="font-display text-2xl">Be our first case study.</h3>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
+              Bring us a real problem. We&apos;ll do the work, get you results, and
+              tell the story together — with your name on it.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Start a conversation
+            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+          </a>
+        </Reveal>
       </div>
     </section>
   );

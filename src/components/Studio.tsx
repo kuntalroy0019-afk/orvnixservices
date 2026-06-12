@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 import { site } from "@/lib/site";
 
 const facts = [
   { k: "Based in", v: `${site.address.city}, India` },
-  { k: "Founded", v: "2021" },
+  { k: "Stage", v: "Taking first partners" },
   { k: "Teams a year", v: "A handful" },
   { k: "Disciplines", v: "Software → hardware" },
 ];
@@ -33,7 +34,7 @@ export default function Studio() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="eyebrow">The studio</p>
+            <SectionLabel index="07" label="The studio" meta="ABOUT" />
             <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
               Small on purpose. Deep by design.
             </h2>

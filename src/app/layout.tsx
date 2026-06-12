@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, IBM_Plex_Mono, Bricolage_Grotesque } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -8,15 +8,17 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+// Monospace for indices, coordinates and technical metadata (engineered grammar).
+const plexMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
 });
 
-const displaySerif = Instrument_Serif({
+// Distinctive contemporary grotesque for display headlines.
+const displayGrotesque = Bricolage_Grotesque({
   variable: "--font-display",
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
   subsets: ["latin"],
 });
 
@@ -110,9 +112,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${displaySerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${plexMono.variable} ${displayGrotesque.variable} h-full antialiased`}
     >
-      <body className="grain min-h-full flex flex-col">{children}</body>
+      <body className="grain blueprint min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

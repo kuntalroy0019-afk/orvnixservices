@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
+import SectionLabel from "@/components/SectionLabel";
 
 const benefits = [
   {
@@ -35,10 +36,10 @@ const benefits = [
 ];
 
 const metrics = [
-  { to: 250, prefix: "€", suffix: "M+", label: "raised by partners we've helped build" },
-  { to: 65, prefix: "−", suffix: "%", label: "average backlog after the first quarter" },
-  { to: 3, prefix: "", suffix: "×", label: "faster iteration than in-house alone" },
-  { to: 40, prefix: "", suffix: "+", label: "products shipped across the studio" },
+  { to: 8, prefix: "", suffix: "", label: "disciplines under one roof" },
+  { to: 2, prefix: "", suffix: "", label: "in-house products in active build" },
+  { to: 48, prefix: "~", suffix: "h", label: "typical iteration loop" },
+  { to: 100, prefix: "", suffix: "%", label: "senior team — no juniors on your budget" },
 ];
 
 function Icon({ name }: { name: string }) {
@@ -100,7 +101,7 @@ export default function Benefits() {
     <section id="why" className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">Why teams choose us</p>
+          <SectionLabel index="03" label="Why teams choose us" meta="ADVANTAGES" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             The weight of a team. None of the overhead.
           </h2>
@@ -129,7 +130,7 @@ export default function Benefits() {
                 to={m.to}
                 prefix={m.prefix}
                 suffix={m.suffix}
-                className="block text-4xl font-semibold tracking-tight text-accent sm:text-5xl"
+                className="mono-num block text-4xl font-semibold text-accent sm:text-5xl"
               />
               <p className="mx-auto mt-3 max-w-[16rem] text-sm text-muted">
                 {m.label}

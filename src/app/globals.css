@@ -10,6 +10,7 @@
   --muted-2: #686963; /* Dim Grey */
   --border: rgba(246, 244, 243, 0.09);
   --border-strong: rgba(246, 244, 243, 0.18);
+  --grid: rgba(246, 244, 243, 0.04); /* blueprint grid lines */
   --accent: #ff3c00; /* Blazing Flame */
   --accent-foreground: #090c02; /* Pitch Black on accent */
 }
@@ -137,28 +138,112 @@ body {
   text-wrap: balance;
 }
 
-/* Premium editorial display type */
+/* Engineered display type — contemporary grotesque, tight + confident */
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 700;
 }
 .display {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.02;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
 }
 .display em {
-  font-style: italic;
+  font-style: normal;
+  color: var(--accent);
 }
 .eyebrow {
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 .eyebrow .dot {
   color: var(--accent);
+}
+
+/* ===== Engineered / blueprint grammar ===== */
+
+/* Monospace numerics for specs & metrics */
+.mono-num {
+  font-family: var(--font-geist-mono), monospace;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.02em;
+}
+
+/* Page-wide blueprint grid (very subtle, fixed) */
+.blueprint::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 80%);
+}
+
+/* L-shaped registration brackets on the four corners of a panel */
+.bracket {
+  position: relative;
+}
+.bracket::before,
+.bracket::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.bracket::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.bracket::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* A thin labelled rule that fills remaining space */
+.hairline {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+/* Crosshair tick */
+.tick {
+  position: relative;
+}
+.tick::before,
+.tick::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+  opacity: 0.6;
+}
+.tick::before {
+  left: 50%;
+  top: -5px;
+  width: 1px;
+  height: 11px;
+  transform: translateX(-50%);
+}
+.tick::after {
+  top: 50%;
+  left: -5px;
+  height: 1px;
+  width: 11px;
+  transform: translateY(-50%);
 }
 
 /* Legal / policy page prose */

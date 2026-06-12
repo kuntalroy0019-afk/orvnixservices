@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 
 const products = [
   {
@@ -67,9 +68,7 @@ export default function Workspace() {
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">
-            Orvnix Workspace <span className="dot">·</span> In-house
-          </p>
+          <SectionLabel index="06" label="Orvnix Workspace" meta="IN-HOUSE" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             We don&apos;t just build for clients. We build for ourselves.
           </h2>
@@ -86,7 +85,7 @@ export default function Workspace() {
               delay={i * 0.08}
               className={`group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 sm:p-9 ${
                 p.accent
-                  ? "border-accent/30 bg-surface-2"
+                  ? "bracket border-accent/30 bg-surface-2"
                   : "border-border bg-surface hover:border-border-strong"
               }`}
             >

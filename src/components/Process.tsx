@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 
 const steps = [
   {
@@ -37,7 +38,7 @@ export default function Process() {
     <section id="approach" className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">How it works</p>
+          <SectionLabel index="01" label="How it works" meta="PROCESS" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             A short conversation, then real momentum.
           </h2>
@@ -87,16 +88,16 @@ export default function Process() {
 
           <figure className="mt-9 border-t border-border pt-7">
             <blockquote className="display text-balance text-2xl leading-snug sm:text-3xl">
-              &ldquo;It stopped feeling like a vendor. It felt like our own team had
-              quietly doubled overnight.&rdquo;
+              Our aim is simple: to stop feeling like a vendor and start feeling
+              like the team you already had.
             </blockquote>
             <figcaption className="mt-4 flex items-center gap-3 text-sm">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-accent font-semibold text-accent-foreground">
-                R
+                O
               </span>
               <span>
-                <span className="font-medium text-foreground">Rafael Costa</span>
-                <span className="text-muted"> — Founder, Lumora</span>
+                <span className="font-medium text-foreground">The Orvnix promise</span>
+                <span className="text-muted"> — how we work</span>
               </span>
             </figcaption>
           </figure>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "@/lib/site";
+import SectionLabel from "@/components/SectionLabel";
 
 export default function CTA() {
   const [sent, setSent] = useState(false);
@@ -46,7 +47,7 @@ export default function CTA() {
 
           <div className="relative grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="eyebrow">Let&apos;s talk</p>
+              <SectionLabel index="10" label="Let's talk" meta="CONTACT" />
               <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
                 Tell us what you&apos;re trying to build.
               </h2>

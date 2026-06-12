@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 import { faqs } from "@/lib/site";
 
 const plans = [
@@ -88,7 +89,7 @@ export default function Pricing() {
     <section id="pricing" className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">Ways to work together</p>
+          <SectionLabel index="09" label="Ways to work together" meta="ENGAGEMENTS" />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             Three ways in. One conversation to start.
           </h2>
@@ -104,7 +105,7 @@ export default function Pricing() {
               key={p.name}
               className={`relative flex flex-col rounded-2xl border p-7 ${
                 p.featured
-                  ? "border-accent/40 bg-surface-2"
+                  ? "bracket border-accent/40 bg-surface-2"
                   : "border-border bg-surface"
               }`}
             >

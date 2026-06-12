@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import SectionLabel from "@/components/SectionLabel";
 
 const rows = [
   { label: "Time to start", orvnix: "A few days", inhouse: "2–4 months", freelance: "1–2 weeks" },
@@ -31,7 +32,7 @@ export default function Comparison() {
     <section className="relative border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">The honest comparison</p>
+          <SectionLabel index="04" label="The honest comparison" meta="VS." />
           <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
             The maths most studios won&apos;t show you.
           </h2>
