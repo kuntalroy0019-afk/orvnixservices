@@ -1,7 +1,6 @@
 /**
- * Engineered section header: a monospace index, the section name, a hairline
- * rule, and optional right-aligned metadata. Used across the site to create a
- * consistent technical-drawing identity.
+ * Quiet section label: a grey serif word in the reference grammar, with an
+ * optional fine index and right-hand metadata kept subtle.
  */
 export default function SectionLabel({
   index,
@@ -13,17 +12,12 @@ export default function SectionLabel({
   meta?: string;
 }) {
   return (
-    <div className="flex items-center gap-4">
-      <span className="font-mono text-xs font-medium tracking-[0.1em] text-accent">
-        [{index}]
-      </span>
-      <span className="font-mono text-xs font-medium uppercase tracking-[0.22em] text-muted-2">
-        {label}
-      </span>
-      <span className="hairline" />
+    <div className="flex items-baseline gap-4">
+      <span className="eyebrow">{label}</span>
+      <span className="hairline opacity-60" />
       {meta && (
-        <span className="hidden font-mono text-xs tracking-[0.1em] text-muted-2 sm:inline">
-          {meta}
+        <span className="hidden font-display text-xs text-muted-2 sm:inline">
+          {index} · {meta}
         </span>
       )}
     </div>

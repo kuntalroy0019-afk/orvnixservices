@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import SplitReveal from "@/components/SplitReveal";
 
 const rows = [
   { label: "Time to start", orvnix: "A few days", inhouse: "2–4 months", freelance: "1–2 weeks" },
@@ -13,7 +14,7 @@ const rows = [
 function Cell({ value, kind }: { value: string; kind: "orvnix" | "other" }) {
   return (
     <div
-      className={`flex items-center gap-2 px-5 py-4 text-sm ${
+      className={`flex items-center gap-2 px-5 py-5 text-sm ${
         kind === "orvnix" ? "text-foreground" : "text-muted"
       }`}
     >
@@ -29,44 +30,48 @@ function Cell({ value, kind }: { value: string; kind: "orvnix" | "other" }) {
 
 export default function Comparison() {
   return (
-    <section className="relative border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section className="section-pad relative border-t border-border">
+      <div className="px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <SectionLabel index="04" label="The honest comparison" meta="VS." />
-          <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-            The maths most studios won&apos;t show you.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          <SplitReveal
+            as="h2"
+            text="The maths most studios won't show you."
+            className="display mt-6 text-balance text-[clamp(2.4rem,4.6vw,4rem)]"
+          />
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             All the output of an in-house team — without the cost, the lock-in, or
             the months of waiting to find out if it works.
           </p>
         </Reveal>
 
-        <div className="mt-14 overflow-x-auto">
-          <div className="min-w-[680px] overflow-hidden rounded-2xl border border-border">
+        <div className="mt-[clamp(3rem,5vw,4.5rem)] overflow-x-auto">
+          <div className="min-w-[680px] border border-border-strong">
             {/* header */}
-            <div className="grid grid-cols-4 border-b border-border bg-surface-2">
-              <div className="px-5 py-5 text-sm font-medium text-muted-2">
+            <div className="grid grid-cols-4 border-b border-border-strong">
+              <div className="px-5 py-5 font-display text-sm text-muted-2">
                 Compared on
               </div>
-              <div className="relative px-5 py-5 text-sm font-semibold text-accent">
+              <div className="display relative bg-accent/[0.05] px-5 py-5 text-lg text-accent">
                 Orvnix
-                <span className="absolute inset-x-0 -top-px h-0.5 bg-accent" />
+                <span className="absolute inset-x-0 top-0 h-[2px] bg-accent" />
               </div>
-              <div className="px-5 py-5 text-sm font-medium">In-house hire</div>
-              <div className="px-5 py-5 text-sm font-medium">Freelancer</div>
+              <div className="display px-5 py-5 text-base text-muted">
+                In-house hire
+              </div>
+              <div className="display px-5 py-5 text-base text-muted">
+                Freelancer
+              </div>
             </div>
 
             {/* rows */}
             {rows.map((r, i) => (
               <div
                 key={r.label}
-                className={`grid grid-cols-4 ${
-                  i % 2 === 0 ? "bg-surface" : "bg-background"
-                }`}
+                className={`grid grid-cols-4 ${i > 0 ? "border-t border-border" : ""}`}
               >
-                <div className="px-5 py-4 text-sm text-muted">{r.label}</div>
-                <div className="bg-accent/[0.04]">
+                <div className="px-5 py-5 text-sm text-muted">{r.label}</div>
+                <div className="bg-accent/[0.06]">
                   <Cell value={r.orvnix} kind="orvnix" />
                 </div>
                 <Cell value={r.inhouse} kind="other" />

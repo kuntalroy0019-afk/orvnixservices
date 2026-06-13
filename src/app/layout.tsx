@@ -1,25 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, IBM_Plex_Mono, Bricolage_Grotesque } from "next/font/google";
+import { Geist, IBM_Plex_Mono, Fraunces } from "next/font/google";
 import { site } from "@/lib/site";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollCue from "@/components/ScrollCue";
+import Cursor from "@/components/Cursor";
+import Intro from "@/components/Intro";
+import Backdrop from "@/components/Backdrop";
 import "./globals.css";
 
+// Secondary voice: neutral grotesque for labels, nav and UI chrome.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-// Monospace for indices, coordinates and technical metadata (engineered grammar).
+// Monospace kept for coordinates and fine technical metadata.
 const plexMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
   weight: ["400", "500", "600"],
   subsets: ["latin"],
 });
 
-// Distinctive contemporary grotesque for display headlines.
-const displayGrotesque = Bricolage_Grotesque({
+// Primary voice: a sharp editorial serif with optical sizing — display and body.
+const displaySerif = Fraunces({
   variable: "--font-display",
-  weight: ["600", "700", "800"],
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 export const metadata: Metadata = {
@@ -57,10 +64,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/icon.svg" }],
   },
   openGraph: {
@@ -100,8 +104,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090c02",
-  colorScheme: "dark",
+  themeColor: "#f4f2ee",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -112,9 +116,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${plexMono.variable} ${displayGrotesque.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${plexMono.variable} ${displaySerif.variable} h-full antialiased`}
     >
-      <body className="grain blueprint min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Intro />
+        <Backdrop />
+        <SmoothScroll />
+        {children}
+        <ScrollCue />
+        <Cursor />
+      </body>
     </html>
   );
 }

@@ -42,3 +42,19 @@ next-env.d.ts
 
 # Claude Code local config (tooling, not for the repo)
 .claude/
+.agents/
+.mcp.json
+skills-lock.json
+
+# Browser-automation test artifacts
+.playwright-mcp/
+
+# Heavy design artifacts — keep the markdown notes, skip large binaries
+screens/
+docs/**/*.mp4
+docs/**/*.pdf
+docs/**/*.png
+docs/**/*.jpg
+docs/**/*.jpeg
+docs/temp/
+docs/memeory/

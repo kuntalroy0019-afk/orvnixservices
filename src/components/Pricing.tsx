@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import SplitReveal from "@/components/SplitReveal";
 import { faqs } from "@/lib/site";
 
 const plans = [
@@ -60,11 +61,11 @@ function Faq({ q, a }: { q: string; a: string }) {
     <div className="border-b border-border">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 py-6 text-left"
       >
-        <span className="text-base font-medium">{q}</span>
+        <span className="font-display text-lg">{q}</span>
         <span
-          className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-muted transition-transform ${
+          className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border-strong font-sans text-muted transition-transform duration-300 ${
             open ? "rotate-45 border-accent text-accent" : ""
           }`}
         >
@@ -73,7 +74,7 @@ function Faq({ q, a }: { q: string; a: string }) {
       </button>
       <div
         className={`grid transition-all duration-300 ${
-          open ? "grid-rows-[1fr] pb-5 opacity-100" : "grid-rows-[0fr] opacity-0"
+          open ? "grid-rows-[1fr] pb-6 opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">
@@ -86,42 +87,47 @@ function Faq({ q, a }: { q: string; a: string }) {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="pricing" className="section-pad relative border-t border-border">
+      <div className="px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <SectionLabel index="09" label="Ways to work together" meta="ENGAGEMENTS" />
-          <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-            Three ways in. One conversation to start.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          <SplitReveal
+            as="h2"
+            text="Three ways in. One conversation to start."
+            className="display mt-6 text-balance text-[clamp(2.4rem,4.6vw,4rem)]"
+          />
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             We&apos;ll shape the exact terms together — but here&apos;s how most
             engagements take form. No contracts to puzzle over, no lock-in.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {plans.map((p) => (
+        <div className="mt-[clamp(3rem,5vw,4.5rem)] grid gap-8 lg:grid-cols-3">
+          {plans.map((p, i) => (
             <div
               key={p.name}
-              className={`relative flex flex-col rounded-2xl border p-7 ${
-                p.featured
-                  ? "bracket border-accent/40 bg-surface-2"
-                  : "border-border bg-surface"
+              className={`relative flex flex-col p-8 ${
+                p.featured ? "ink" : "border border-border bg-surface"
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-3 left-7 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+                <span className="absolute -top-3 left-8 bg-accent px-3 py-1 font-display text-xs text-accent-foreground">
                   Most popular
                 </span>
               )}
-              <h3 className="font-display text-2xl">{p.name}</h3>
+              <span className="font-display text-sm text-muted-2">
+                P·0{i + 1}
+              </span>
+              <h3 className="display mt-6 text-3xl">{p.name}</h3>
               <div className="mt-3 flex items-baseline gap-2">
-                <span className="text-2xl font-semibold tracking-tight">{p.price}</span>
-                <span className="text-sm text-muted-2">· {p.cadence}</span>
+                <span className="font-display text-2xl">{p.price}</span>
+                <span className="font-display text-sm text-muted-2">
+                  · {p.cadence}
+                </span>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-muted">{p.blurb}</p>
 
-              <ul className="mt-7 space-y-3">
+              <ul className="mt-8 flex-1 space-y-3 border-t border-border pt-6">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
                     <span className="mt-0.5 text-accent">✓</span>
@@ -132,11 +138,7 @@ export default function Pricing() {
 
               <a
                 href="#contact"
-                className={`group mt-8 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5 ${
-                  p.featured
-                    ? "bg-accent text-accent-foreground"
-                    : "border border-border-strong text-foreground hover:bg-surface-2"
-                }`}
+                className={`group mt-9 font-sans ${p.featured ? "btn-ink" : "btn-line"}`}
               >
                 {p.cta}
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -146,13 +148,13 @@ export default function Pricing() {
         </div>
 
         {/* FAQ */}
-        <div className="mt-24 grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="mt-[clamp(5rem,8vw,7rem)] grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="eyebrow">Questions</p>
-            <h3 className="display mt-5 text-balance text-3xl sm:text-4xl">
+            <SectionLabel index="09·a" label="Questions" />
+            <h3 className="display mt-6 text-balance text-[clamp(1.9rem,3vw,2.6rem)]">
               Everything else you might be wondering.
             </h3>
-            <p className="mt-5 text-sm leading-relaxed text-muted">
+            <p className="mt-6 text-sm leading-relaxed text-muted">
               Still unsure?{" "}
               <a
                 href="#contact"
@@ -163,7 +165,7 @@ export default function Pricing() {
               .
             </p>
           </div>
-          <div>
+          <div className="border-t border-border">
             {faqs.map((f) => (
               <Faq key={f.q} {...f} />
             ))}

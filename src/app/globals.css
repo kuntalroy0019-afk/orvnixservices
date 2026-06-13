@@ -1,24 +1,66 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette: Blazing Flame / White Smoke / Dim Grey / Midnight Violet / Pitch Black */
-  --background: #090c02; /* Pitch Black */
-  --surface: #12101a; /* pitch black lifted toward Midnight Violet */
-  --surface-2: #190b28; /* Midnight Violet */
-  --foreground: #f6f4f3; /* White Smoke */
-  --muted: #a3a39d; /* lightened Dim Grey for body text */
-  --muted-2: #686963; /* Dim Grey */
-  --border: rgba(246, 244, 243, 0.09);
-  --border-strong: rgba(246, 244, 243, 0.18);
-  --grid: rgba(246, 244, 243, 0.04); /* blueprint grid lines */
+  /* Orvnix brand on a gallery-white ground: White Smoke neutrals, Pitch-Black
+     ink, Blazing Flame accent (tuned for light ground). */
+  --background: #ffffff;
+  --surface: #f6f4f3; /* White Smoke — lightest panel */
+  --surface-2: #efedeb; /* lighter panel */
+  --stage: #d8d6d2; /* warm grey theater stage (images blend into it) */
+  --foreground: #090c02; /* Pitch Black ink */
+  --muted: #686963; /* Dim Grey */
+  --muted-2: #a3a39d; /* label grey */
+  --border: rgba(9, 12, 2, 0.18);
+  --border-strong: rgba(9, 12, 2, 0.38);
   --accent: #ff3c00; /* Blazing Flame */
-  --accent-foreground: #090c02; /* Pitch Black on accent */
+  --accent-foreground: #f6f4f3; /* White Smoke on flame */
+  --ease-1: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-2: cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+/*
+ * Dark "ink" sections re-scope the design tokens, so any component dropped
+ * inside automatically inverts — white-smoke text on near-black, hairlines
+ * lightened.
+ */
+.ink {
+  --background: #090c02; /* Pitch Black */
+  --surface: #190b28; /* Midnight Violet */
+  --surface-2: #241634; /* lifted Midnight Violet */
+  --stage: #190b28; /* Midnight Violet stage */
+  --foreground: #f6f4f3; /* White Smoke */
+  --muted: #c4c2bd;
+  --muted-2: #8e8d87;
+  --border: rgba(246, 244, 243, 0.18);
+  --border-strong: rgba(246, 244, 243, 0.38);
+  --accent: #ff3c00; /* full Blazing Flame on dark */
+  --accent-foreground: #f6f4f3;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Re-scope back to white inside an ink section (e.g. the contact form card) */
+.paper {
+  --background: #ffffff;
+  --surface: #f6f4f3;
+  --surface-2: #efedeb;
+  --stage: #d8d6d2;
+  --foreground: #090c02;
+  --muted: #686963;
+  --muted-2: #a3a39d;
+  --border: rgba(9, 12, 2, 0.18);
+  --border-strong: rgba(9, 12, 2, 0.38);
+  --accent: #ff3c00;
+  --accent-foreground: #f6f4f3;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-stage: var(--stage);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
@@ -37,12 +79,15 @@
 
 html {
   scroll-behavior: smooth;
+  /* keep anchored sections clear of the fixed header on hash / keyboard nav */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  /* Serif-primary, editorial. Sans is the secondary voice for labels & UI. */
+  font-family: var(--font-display), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -61,12 +106,17 @@ body {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-2);
+  background: var(--stage);
   border-radius: 999px;
   border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-strong);
+}
+
+/* Fluid section rhythm */
+.section-pad {
+  padding-block: clamp(5rem, 9vw, 8.5rem);
 }
 
 @keyframes marquee {
@@ -79,40 +129,13 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 28s linear infinite;
-}
-
-@keyframes float-slow {
-  0%, 100% {
-    transform: translate(-50%, 0) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -24px) scale(1.06);
-  }
-}
-.animate-float-slow {
-  animation: float-slow 11s ease-in-out infinite;
-}
-
-@keyframes drift {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(40px, 30px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-.animate-drift {
-  animation: drift 16s ease-in-out infinite;
+  animation: marquee 32s linear infinite;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -121,73 +144,58 @@ body {
 }
 
 .reveal {
-  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: fade-up 1s var(--ease-1) both;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-/* Engineered display type — contemporary grotesque, tight + confident */
+/* ===== Display type — tight, heavy grotesque; accent words flip to red ===== */
 .font-display {
-  font-family: var(--font-display), "Arial Narrow", sans-serif;
-  font-weight: 700;
+  font-family: var(--font-display), Georgia, serif;
 }
 .display {
-  font-family: var(--font-display), "Arial Narrow", sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 0.98;
+  font-family: var(--font-geist-sans), Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
 }
-.display em {
+.display em,
+.display strong {
   font-style: normal;
+  font-weight: inherit;
   color: var(--accent);
 }
+
+/* Quiet serif label in grey — the section voice */
 .eyebrow {
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(0.95rem, 1vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--muted-2);
 }
 .eyebrow .dot {
   color: var(--accent);
 }
 
-/* ===== Engineered / blueprint grammar ===== */
-
-/* Monospace numerics for specs & metrics */
+/* Large serif numerals for metrics — the red editorial figures */
 .mono-num {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-display), Georgia, serif;
   font-feature-settings: "tnum" 1;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
-/* Page-wide blueprint grid (very subtle, fixed) */
-.blueprint::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 96px 96px;
-  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 80%);
+/* A thin labelled rule that fills remaining space */
+.hairline {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
 }
 
-/* L-shaped registration brackets on the four corners of a panel */
+/* Quiet corner registration marks (legacy panels) */
 .bracket {
   position: relative;
 }
@@ -197,9 +205,9 @@ body {
   position: absolute;
   width: 10px;
   height: 10px;
-  border-color: var(--accent);
+  border-color: var(--border-strong);
   border-style: solid;
-  opacity: 0.7;
+  opacity: 0.8;
   pointer-events: none;
 }
 .bracket::before {
@@ -213,49 +221,345 @@ body {
   border-width: 0 1px 1px 0;
 }
 
-/* A thin labelled rule that fills remaining space */
-.hairline {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, var(--border-strong), transparent);
+/* Images set into the grey stage darken into the paper — gallery treatment */
+.stage-img {
+  mix-blend-mode: multiply;
 }
 
-/* Crosshair tick */
-.tick {
+/* One photographic voice site-wide: grayscale, gently lifted contrast */
+.img-treat {
+  filter: grayscale(1) contrast(1.06) brightness(1.03);
+}
+
+/* Lift for dark plates on the grey stage: blows the image into the high-key
+   register so the multiply-blended title stays legible over it */
+.img-lift {
+  filter: grayscale(1) contrast(0.85) brightness(2);
+}
+
+/* Cheap edge fades for marquees — replaces animated mask-image, which forces
+   re-rasterization every frame */
+.fade-edges {
   position: relative;
 }
-.tick::before,
-.tick::after {
+.fade-edges::before,
+.fade-edges::after {
   content: "";
   position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  z-index: 1;
+  pointer-events: none;
+}
+.fade-edges::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--background), transparent);
+}
+.fade-edges::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--background), transparent);
+}
+
+/* Hero image settle — one slow scale-in on load, transform-only */
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.animate-settle {
+  animation: settle 2.6s var(--ease-1) both;
+}
+
+/* ===== Page intro — wordmark rises, curtain lifts ===== */
+@keyframes intro-lift {
+  to {
+    transform: translateY(-101%);
+  }
+}
+@keyframes intro-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes intro-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  background: var(--background);
+  animation: intro-lift 0.8s var(--ease-1) 1.25s forwards;
+  pointer-events: none;
+}
+.intro .mask {
+  overflow: hidden;
+}
+.intro .wordmark {
+  display: block;
+  font-family: var(--font-geist-sans), Helvetica, Arial, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  animation: intro-rise 0.8s var(--ease-1) 0.15s both;
+}
+.intro .rule {
+  height: 2px;
+  width: clamp(7rem, 12vw, 12rem);
   background: var(--accent);
-  opacity: 0.6;
+  transform-origin: left;
+  animation: intro-rule 0.7s var(--ease-1) 0.55s both;
 }
-.tick::before {
-  left: 50%;
-  top: -5px;
-  width: 1px;
-  height: 11px;
-  transform: translateX(-50%);
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+  .animate-settle {
+    animation: none;
+  }
 }
-.tick::after {
-  top: 50%;
-  left: -5px;
+
+/* Hero scroll cue — a travelling tick down a hairline */
+@keyframes scrollcue {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(420%);
+  }
+}
+.animate-scrollcue {
+  animation: scrollcue 1.9s var(--ease-1) infinite;
+}
+
+/* Text-arrow link: arrow nudges, underline wipes in */
+.arrow-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.arrow-link .arrow {
+  transition: transform 0.3s var(--ease-1);
+}
+.arrow-link:hover .arrow {
+  transform: translateX(4px);
+}
+.arrow-link .line {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
   height: 1px;
-  width: 11px;
-  transform: translateY(-50%);
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s var(--ease-1);
+}
+.arrow-link:hover .line {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scrollcue {
+    animation: none;
+  }
+}
+
+/* Animated nav underline (wipes in from left) */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s var(--ease-1);
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ===== Ink button — sharp charcoal slab, long and confident ===== */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  min-width: clamp(11rem, 15vw, 18rem);
+  padding: 1.1rem 1.75rem;
+  font-size: clamp(0.85rem, 0.92vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.35s var(--ease-1), color 0.35s var(--ease-1);
+}
+.btn-ink:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+.ink .btn-ink:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border-strong);
+  color: var(--foreground);
+  min-width: clamp(11rem, 15vw, 18rem);
+  padding: 1.1rem 1.75rem;
+  font-size: clamp(0.85rem, 0.92vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1;
+  transition: border-color 0.35s var(--ease-1), background-color 0.35s var(--ease-1);
+}
+.btn-line:hover {
+  border-color: var(--foreground);
+  background: var(--surface);
+}
+
+/* ===== Custom cursor: signal dot + labelled view circle ===== */
+.cursor-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  pointer-events: none;
+}
+.cursor-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 7px;
+  width: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  will-change: transform;
+  transition: opacity 0.3s var(--ease-2);
+}
+.cursor-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 92px;
+  width: 92px;
+  margin: -46px 0 0 -46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+.cursor-badge .scaler {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: transform 0.45s var(--ease-1);
+}
+.cursor-badge.is-on .scaler {
+  transform: scale(1);
+}
+.cursor-badge span {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fdf8f4;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cursor-root {
+    display: none;
+  }
+}
+
+/* ===== Lenis smooth scroll ===== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ===== Line-by-line heading reveal (SplitReveal) ===== */
+.split-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.split-word {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.85s var(--ease-1), opacity 0.85s var(--ease-1);
+  will-change: transform;
+}
+.split-word.is-accent {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-word {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
 }
 
 /* Legal / policy page prose */
 .legal {
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.75;
+  font-size: 0.98rem;
+  line-height: 1.78;
 }
 .legal h2 {
   color: var(--foreground);
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.45rem;
+  font-weight: 460;
   letter-spacing: -0.01em;
   margin-top: 2.75rem;
   margin-bottom: 0.85rem;
@@ -263,8 +567,8 @@ body {
 }
 .legal h3 {
   color: var(--foreground);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 480;
   margin-top: 1.75rem;
   margin-bottom: 0.6rem;
 }
@@ -300,5 +604,5 @@ body {
 }
 .legal strong {
   color: var(--foreground);
-  font-weight: 600;
+  font-weight: 520;
 }

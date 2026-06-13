@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const links = [
-  { label: "Services", href: "/#services" },
-  { label: "Work", href: "/#work" },
-  { label: "Workspace", href: "/#workspace" },
-  { label: "Studio", href: "/#studio" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "Workspace", href: "/workspace" },
+  { label: "Studio", href: "/studio" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 export default function Header() {
@@ -22,17 +22,36 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock background scroll while the full-screen menu is open.
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [open]);
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-xl"
-          : "border-b border-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+    <>
+      {/* top scrim — softens content dissolving under the bar once scrolled */}
+      <div
+        aria-hidden
+        className={`pointer-events-none fixed inset-x-0 top-0 z-40 h-28 transition-opacity duration-500 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          background: "linear-gradient(to bottom, var(--background), transparent)",
+        }}
+      />
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-500 ${
+          scrolled
+            ? "border-border bg-background/70 backdrop-blur-md"
+            : "border-transparent bg-transparent"
+        }`}
+      >
+      <nav className="flex h-16 items-center justify-between pl-5 sm:pl-8 md:h-[4.5rem]">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Orvnix home">
-          <span className="grid h-7 w-7 place-items-center rounded-md bg-accent text-accent-foreground">
+          <span className="grid h-7 w-7 place-items-center bg-foreground text-background transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path
                 d="M12 2L4 7v10l8 5 8-5V7l-8-5z"
@@ -43,15 +62,16 @@ export default function Header() {
               <path d="M12 7v10M7.5 9.5l9 5M16.5 9.5l-9 5" stroke="currentColor" strokeWidth="2" />
             </svg>
           </span>
-          <span className="text-[17px] font-semibold tracking-tight">Orvnix</span>
+          <span className="display text-[20px]">Orvnix</span>
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        {/* centered nav */}
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="text-sm text-muted transition-colors hover:text-foreground"
+                className="nav-underline font-sans text-[13px] text-foreground/80 transition-colors duration-200 hover:text-foreground"
               >
                 {l.label}
               </Link>
@@ -59,18 +79,17 @@ export default function Header() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
-          <Link
-            href="/#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Book a call
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
-          </Link>
-        </div>
+        {/* full-height dark slab CTA, flush to the corner */}
+        <Link
+          href="/contact"
+          className="group hidden h-full items-center gap-2 bg-foreground px-9 font-sans text-[13px] font-medium text-background transition-colors duration-300 hover:bg-accent hover:text-accent-foreground md:flex"
+        >
+          Book a call
+          <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+        </Link>
 
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-md border border-border md:hidden"
+          className="mr-5 flex h-9 w-9 items-center justify-center rounded-[3px] border border-border-strong md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -91,31 +110,48 @@ export default function Header() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
-          <ul className="mx-auto max-w-7xl space-y-1 px-5 py-4">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-base text-muted hover:bg-surface hover:text-foreground"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-2">
+        <div className="fixed inset-0 z-40 flex flex-col bg-background md:hidden">
+          {/* spacer under the fixed header bar */}
+          <div className="h-16 shrink-0 border-b border-border" />
+
+          <nav className="flex flex-1 flex-col justify-center px-6">
+            {links.map((l, i) => (
               <Link
-                href="/#contact"
+                key={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-full bg-accent px-4 py-3 text-center text-sm font-medium text-accent-foreground"
+                className="reveal display border-b border-border py-4 text-4xl text-foreground"
+                style={{ animationDelay: `${0.06 + i * 0.05}s` }}
               >
-                Book a call
+                <span className="mr-4 align-middle font-display text-sm text-muted-2">
+                  0{i + 1}
+                </span>
+                {l.label}
               </Link>
-            </li>
-          </ul>
+            ))}
+          </nav>
+
+          <div
+            className="reveal shrink-0 border-t border-border p-6"
+            style={{ animationDelay: `${0.06 + links.length * 0.05}s` }}
+          >
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="btn-ink w-full"
+            >
+              Book a call
+            </Link>
+            <a
+              href={`mailto:admin@orvnix.com`}
+              className="mt-4 block text-center font-sans text-xs tracking-[0.1em] text-muted"
+            >
+              admin@orvnix.com
+            </a>
+          </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

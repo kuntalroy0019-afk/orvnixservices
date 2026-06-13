@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import SplitReveal from "@/components/SplitReveal";
+import ParallaxImage from "@/components/ParallaxImage";
 import { site } from "@/lib/site";
 
 const facts = [
@@ -12,33 +13,33 @@ const facts = [
 
 export default function Studio() {
   return (
-    <section id="studio" className="relative border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
-            <Image
-              src="/images/studio.jpeg"
-              alt="The Orvnix studio at work"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover opacity-90 grayscale transition-all duration-700 hover:grayscale-0"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, transparent 50%, rgba(8,8,10,0.6))",
-              }}
-            />
+    <section id="studio" className="section-pad relative border-t border-border">
+      <div className="px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal className="relative bg-stage p-4 sm:p-6">
+            <div className="relative aspect-[4/3] overflow-hidden" data-cursor="Studio">
+              <ParallaxImage
+                src="/images/studio.jpeg"
+                alt="The Orvnix studio at work"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                strength={16}
+                className="stage-img img-treat object-cover"
+              />
+            </div>
+            <div className="mt-4 flex items-baseline justify-between font-display text-xs text-muted">
+              <span>Fig. 02 — The studio at work</span>
+              <span className="text-accent">About</span>
+            </div>
           </Reveal>
 
           <Reveal delay={0.08}>
             <SectionLabel index="07" label="The studio" meta="ABOUT" />
-            <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-              Small on purpose. Deep by design.
-            </h2>
-            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+            <SplitReveal
+              as="h2"
+              text="Small on purpose. Deep by design."
+              className="display mt-6 text-balance text-[clamp(2.4rem,4.6vw,4rem)]"
+            />
+            <div className="mt-7 space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 Orvnix is a tight studio in {site.address.city}, built by people who
                 would rather do a few things exceptionally than many things
@@ -52,11 +53,16 @@ export default function Studio() {
               </p>
             </div>
 
-            <dl className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
-              {facts.map((f) => (
-                <div key={f.k} className="bg-surface px-5 py-5">
+            <dl className="mt-10 grid grid-cols-2">
+              {facts.map((f, i) => (
+                <div
+                  key={f.k}
+                  className={`border-t border-border py-5 ${
+                    i % 2 === 1 ? "border-l pl-5" : "pr-5"
+                  }`}
+                >
                   <dt className="eyebrow">{f.k}</dt>
-                  <dd className="mt-1.5 font-display text-xl text-foreground">
+                  <dd className="display mt-2 text-xl text-foreground">
                     {f.v}
                   </dd>
                 </div>

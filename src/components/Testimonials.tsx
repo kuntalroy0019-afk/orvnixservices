@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import SplitReveal from "@/components/SplitReveal";
 
 const perks = [
   {
@@ -18,54 +19,36 @@ const perks = [
 
 export default function Testimonials() {
   return (
-    <section className="relative border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section className="section-pad relative border-t border-border">
+      <div className="px-5 sm:px-8">
         <Reveal className="max-w-2xl">
           <SectionLabel index="08" label="Early days, honestly" meta="TRUST" />
-          <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-            We&apos;d rather earn your trust than fake it.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          <SplitReveal
+            as="h2"
+            text="We'd rather earn your trust than fake it."
+            className="display mt-6 text-balance text-[clamp(2.4rem,4.6vw,4rem)]"
+          />
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             Orvnix is a new studio, so we&apos;re not going to wallpaper this page
             with invented testimonials. Instead, here&apos;s the honest deal — and
             why being one of our first partners is the best time to work with us.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-[clamp(3rem,5vw,4.5rem)] grid gap-px border border-border bg-border md:grid-cols-3">
           {perks.map((p, i) => (
             <Reveal
               key={p.title}
               delay={i * 0.08}
-              className="rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
+              className="bg-background p-8 transition-colors duration-500 hover:bg-surface"
             >
-              <div className="grid h-10 w-10 place-items-center rounded-full bg-surface-2 font-display text-lg text-accent">
-                {i + 1}
-              </div>
-              <h3 className="mt-5 text-lg font-semibold tracking-tight">
-                {p.title}
-              </h3>
+              <div className="display text-4xl text-accent">{i + 1}</div>
+              <h3 className="display mt-7 text-2xl">{p.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">{p.body}</p>
             </Reveal>
           ))}
         </div>
 
-        <Reveal className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-accent/30 bg-surface-2 p-7 sm:flex-row sm:items-center sm:p-9">
-          <div>
-            <h3 className="font-display text-2xl">Be our first case study.</h3>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
-              Bring us a real problem. We&apos;ll do the work, get you results, and
-              tell the story together — with your name on it.
-            </p>
-          </div>
-          <a
-            href="#contact"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Start a conversation
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
-          </a>
-        </Reveal>
       </div>
     </section>
   );

@@ -1,5 +1,7 @@
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import SplitReveal from "@/components/SplitReveal";
+import ProcessFlow from "@/components/ProcessFlow";
 
 const steps = [
   {
@@ -35,73 +37,66 @@ const team = [
 
 export default function Process() {
   return (
-    <section id="approach" className="relative border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal className="max-w-2xl">
+    <section id="approach" className="relative">
+      <div className="section-pad px-5 pb-0 md:px-[5vw]">
+        <Reveal className="max-w-2xl pb-[clamp(3rem,5vw,4.5rem)]">
           <SectionLabel index="01" label="How it works" meta="PROCESS" />
-          <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">
-            A short conversation, then real momentum.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          <SplitReveal
+            as="h2"
+            text="A short conversation, then real momentum."
+            className="display mt-6 text-balance text-[clamp(2.4rem,4.6vw,4rem)]"
+          />
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             No procurement theatre. No six-week onboarding. Four steps from the
             first call to something live — and then we keep going.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div
-              key={s.n}
-              className="group bg-surface p-7 transition-colors hover:bg-surface-2"
-            >
-              <div className="mb-8 font-mono text-sm text-muted-2 transition-colors group-hover:text-accent">
-                {s.n}
-              </div>
-              <h3 className="text-lg font-semibold tracking-tight">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{s.body}</p>
-            </div>
-          ))}
-        </div>
+      </div>
 
-        {/* team composition */}
-        <div className="mt-8 rounded-2xl border border-border bg-surface p-7 sm:p-9">
-          <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-md">
-              <h3 className="font-display text-2xl">One engagement, the whole team</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                Not a freelancer. Not a single contractor. A cross-functional crew
-                that covers the entire surface — from interface to inference to
-                hardware.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2.5">
-              {team.map((role) => (
-                <span
-                  key={role}
-                  className="rounded-full border border-border-strong bg-background px-4 py-2 text-sm text-foreground"
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
+      {/* the route — scroll draws the line through all four steps */}
+      <ProcessFlow steps={steps} />
+
+      {/* team composition */}
+      <div className="px-5 py-[clamp(4rem,7vw,6.5rem)] sm:px-8">
+        <div className="flex flex-col gap-7 border-t border-border pt-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-md">
+            <h3 className="display text-3xl">One engagement, the whole team</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Not a freelancer. Not a single contractor. A cross-functional crew
+              that covers the entire surface — from interface to inference to
+              hardware.
+            </p>
           </div>
-
-          <figure className="mt-9 border-t border-border pt-7">
-            <blockquote className="display text-balance text-2xl leading-snug sm:text-3xl">
-              Our aim is simple: to stop feeling like a vendor and start feeling
-              like the team you already had.
-            </blockquote>
-            <figcaption className="mt-4 flex items-center gap-3 text-sm">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-accent font-semibold text-accent-foreground">
-                O
+          <div className="flex flex-wrap gap-2.5">
+            {team.map((role) => (
+              <span
+                key={role}
+                className="border border-border-strong px-4 py-2 font-display text-sm text-foreground"
+              >
+                {role}
               </span>
-              <span>
-                <span className="font-medium text-foreground">The Orvnix promise</span>
-                <span className="text-muted"> — how we work</span>
-              </span>
-            </figcaption>
-          </figure>
+            ))}
+          </div>
         </div>
+
+        <figure className="mt-12 border-t border-border pt-10">
+          {/* the serif voice carries the statement, in the reference's manner */}
+          <blockquote className="mx-auto max-w-4xl text-balance text-center font-display text-[clamp(1.8rem,3.4vw,3rem)] leading-[1.15]">
+            Our aim is simple: to stop feeling like a{" "}
+            <em className="not-italic text-accent">vendor</em> and start feeling
+            like the team you already had.
+          </blockquote>
+          <figcaption className="mt-7 flex items-center justify-center gap-3 text-sm">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground font-display text-background">
+              O
+            </span>
+            <span className="font-display">
+              <span className="text-foreground">The Orvnix promise</span>
+              <span className="text-muted"> — how we work</span>
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
