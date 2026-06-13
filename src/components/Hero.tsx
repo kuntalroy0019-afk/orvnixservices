@@ -26,7 +26,10 @@ export default function Hero() {
   return (
     <section className="relative">
       {/* ===== Full-viewport hero — the shared canvas shows through ===== */}
-      <div className="relative min-h-[100svh]">
+      {/* Mobile: natural stacked flow (headline → passage) so nothing
+          collides on short screens. Desktop (md+): the original absolute
+          art layout, untouched. */}
+      <div className="relative flex min-h-[100svh] flex-col justify-center gap-8 px-5 py-20 md:block md:gap-0 md:px-0 md:py-0">
         {/* motion centerpiece: the network forms in the open right field as
             the visitor scrolls — order engineered out of scatter */}
         <div
@@ -38,7 +41,7 @@ export default function Hero() {
 
         {/* stepped headline cascade, anchored left */}
         <h1
-          className="display absolute left-5 top-1/2 w-[92vw] -translate-y-1/2 text-[clamp(2.7rem,6.8vw,8rem)] leading-[1.02] md:left-[10vw] md:w-[72vw]"
+          className="display w-full text-[clamp(2.7rem,6.8vw,8rem)] leading-[1.02] md:absolute md:left-[10vw] md:top-1/2 md:w-[72vw] md:-translate-y-1/2"
           aria-label="We engineer software, AI and autonomous machines."
         >
           <SplitReveal as="span" text="We engineer" delay={0.1} className="block" />
@@ -58,7 +61,7 @@ export default function Hero() {
         </h1>
 
         {/* supporting passage — mid-right, quiet */}
-        <div className="absolute bottom-[12vh] left-5 right-5 md:bottom-auto md:left-auto md:right-[10vw] md:top-[58%] md:w-[20vw] md:min-w-[280px]">
+        <div className="w-full md:absolute md:bottom-auto md:right-[10vw] md:top-[58%] md:w-[20vw] md:min-w-[280px]">
           <p
             className="reveal font-sans text-[15px] leading-relaxed text-foreground"
             style={{ animationDelay: "0.55s" }}

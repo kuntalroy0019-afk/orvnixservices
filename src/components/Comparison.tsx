@@ -45,8 +45,15 @@ export default function Comparison() {
           </p>
         </Reveal>
 
-        <div className="mt-[clamp(3rem,5vw,4.5rem)] overflow-x-auto">
-          <div className="min-w-[680px] border border-border-strong">
+        {/* Mobile: the 4-column table can't fit 390px, so it scrolls — make
+            that discoverable with a hint + a right-edge fade. Desktop fits
+            and shows neither. */}
+        <p className="mt-[clamp(3rem,5vw,4.5rem)] font-sans text-xs uppercase tracking-[0.14em] text-muted-2 md:hidden">
+          Swipe to compare →
+        </p>
+        <div className="relative mt-3 md:mt-[clamp(3rem,5vw,4.5rem)]">
+          <div className="overflow-x-auto">
+            <div className="min-w-[680px] border border-border-strong">
             {/* header */}
             <div className="grid grid-cols-4 border-b border-border-strong">
               <div className="px-5 py-5 font-display text-sm text-muted-2">
@@ -78,7 +85,13 @@ export default function Comparison() {
                 <Cell value={r.freelance} kind="other" />
               </div>
             ))}
+            </div>
           </div>
+          {/* right-edge fade — signals more columns on mobile */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent md:hidden"
+          />
         </div>
       </div>
     </section>
