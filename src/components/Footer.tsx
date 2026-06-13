@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="grid gap-12 border-t border-border pt-[clamp(3rem,5vw,4.5rem)] lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link href="/#hero" aria-label="Back to top" className="group flex items-center gap-2.5">
               <span className="grid h-7 w-7 place-items-center bg-foreground text-background">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path
@@ -76,6 +76,12 @@ export default function Footer() {
                 </svg>
               </span>
               <span className="display text-[20px]">Orvnix</span>
+              <span
+                aria-hidden
+                className="font-sans text-sm text-muted-2 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-accent"
+              >
+                ↑
+              </span>
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
               Built from the inside, in {site.address.city}.
@@ -123,6 +129,15 @@ export default function Footer() {
             {site.address.city}, {site.address.country}.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 font-display text-sm text-muted-2">
+            <Link
+              href="/#hero"
+              className="group inline-flex items-center gap-1 transition-colors hover:text-foreground"
+            >
+              Back to top
+              <span aria-hidden className="text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                ↑
+              </span>
+            </Link>
             <Link href="/privacy" className="transition-colors hover:text-foreground">
               Privacy
             </Link>

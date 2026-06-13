@@ -24,7 +24,7 @@ const logos = [
 
 export default function Hero() {
   return (
-    <section className="relative">
+    <section id="hero" className="relative">
       {/* ===== Full-viewport hero — the shared canvas shows through ===== */}
       {/* Mobile: natural stacked flow (headline → passage) so nothing
           collides on short screens. Desktop (md+): the original absolute

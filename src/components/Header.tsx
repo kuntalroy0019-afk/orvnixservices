@@ -56,7 +56,7 @@ export default function Header() {
         }`}
       >
       <nav className="flex h-16 items-center justify-between pl-5 sm:pl-8 md:h-[4.5rem]">
-        <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5" aria-label="Orvnix home">
+        <Link href="/#hero" onClick={() => setOpen(false)} className="flex items-center gap-2.5" aria-label="Orvnix — back to top">
           <span className="grid h-7 w-7 place-items-center bg-foreground text-background transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path
@@ -122,13 +122,24 @@ export default function Header() {
           <div className="h-16 shrink-0 border-b border-border" />
 
           <nav className="flex flex-1 flex-col justify-center px-6">
+            <Link
+              href="/#hero"
+              onClick={() => setOpen(false)}
+              className="reveal display border-b border-border py-4 text-4xl text-foreground"
+              style={{ animationDelay: "0.06s" }}
+            >
+              <span className="mr-4 align-middle font-display text-sm text-accent">
+                00
+              </span>
+              Home
+            </Link>
             {links.map((l, i) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="reveal display border-b border-border py-4 text-4xl text-foreground"
-                style={{ animationDelay: `${0.06 + i * 0.05}s` }}
+                style={{ animationDelay: `${0.11 + i * 0.05}s` }}
               >
                 <span className="mr-4 align-middle font-display text-sm text-muted-2">
                   0{i + 1}

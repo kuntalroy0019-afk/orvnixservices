@@ -3,6 +3,7 @@ import { Geist, IBM_Plex_Mono, Fraunces } from "next/font/google";
 import { site } from "@/lib/site";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollCue from "@/components/ScrollCue";
+import HomeDial from "@/components/HomeDial";
 import Cursor from "@/components/Cursor";
 import Intro from "@/components/Intro";
 import Backdrop from "@/components/Backdrop";
@@ -124,6 +125,7 @@ export default function RootLayout({
         <SmoothScroll />
         {children}
         <ScrollCue />
+        <HomeDial />
         <Cursor />
       </body>
     </html>
