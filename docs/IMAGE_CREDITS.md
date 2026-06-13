@@ -26,13 +26,13 @@ specimens are unchanged.
 | `work-sentinel.jpeg` | Work — Sentinel (AI agents) | Orange neon X reflected on a dark facade | Pexels `17192724` |
 | `work-atlas.jpeg` | Work — Atlas (robotics) | Cobot arm + gripper on near-black | Pexels `8438863` |
 | `work-skyline.jpeg` | Work — Skyline (drones) | Aerial foggy valley with road | Pexels `13444084` |
-| `studio.jpeg` | Studio — "the studio at work" | Backlit lone figure in a studio space (anonymous) | Pexels `3379932` |
+| `studio.jpeg` | Studio — "the studio at work" | Dark dev desk — code monitor + anonymous hands (tech-workspace still-life) | Pexels `5473299` |
 | `footer-band.jpeg` | Footer — cinematic pre-footer band | Aerial through cloud cover | Pexels `34926578` |
 | `stage-software.jpeg` | Theater — Software & Product | Backlit keyboard macro | `photo-1612383401597-cdfb8bdfa0d9` |
 | `stage-ai.jpeg` | Theater — AI Agents & LLM | Circuit board macro | `photo-1518770660439-4636190af475` |
 | `stage-robotics.jpeg` | Theater — Robotics | Industrial robot arm, white showroom | `photo-1655393001768-d946c97d6fd1` |
 | `stage-drones.jpeg` | Theater — Drone Operations | Quadcopter over misty ridges | `photo-1508444845599-5c89863b1c44` |
-| `reach-aerial.jpeg` | Reach — footprint band | Aerial highway interchange | `photo-1465447142348-e9952c393450` |
+| `reach-aerial.jpeg` | Reach — footprint band | Top-down aerial of a Kolkata flyover junction at dusk | Pexels `17778589` |
 
 Original page for a Pexels photo: `https://www.pexels.com/photo/<ID>/`.
 Original page for an Unsplash photo: `https://unsplash.com/photos/<photo ID>`.
