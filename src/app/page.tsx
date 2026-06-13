@@ -27,7 +27,7 @@ export default function Home() {
         {/* One persistent canvas — hero, about and the stats all scroll over
             the same washed image, fading to white before the next chapter. */}
         <div className="relative">
-          <div aria-hidden className="absolute inset-0 overflow-hidden">
+          <div aria-hidden className="absolute inset-0 overflow-hidden opacity-40 md:opacity-100">
             <ParallaxBG>
               <div className="animate-settle absolute inset-0">
                 <RidgeCanvas />

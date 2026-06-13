@@ -40,7 +40,7 @@ export default function AboutImpact() {
               delay={i * 0.1}
               className={["", "lg:mt-[5vw]", "lg:mt-[10vw]", "lg:mt-[15vw]"][i]}
             >
-              <div className="flex min-h-[24rem] flex-col justify-between border border-border-strong/50 bg-transparent p-6 lg:-ml-px">
+              <div className="flex min-h-[13rem] flex-col justify-between gap-6 border border-border-strong/50 bg-transparent p-6 sm:min-h-[24rem] lg:-ml-px">
                 <div className="font-sans text-xs text-foreground">{m.k}</div>
                 <NumberReveal
                   value={m.value}

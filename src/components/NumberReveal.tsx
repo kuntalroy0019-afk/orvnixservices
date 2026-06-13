@@ -55,7 +55,7 @@ export default function NumberReveal({
       </span>
       <span
         aria-hidden
-        className="mt-3 block h-px bg-accent"
+        className="mt-3 block h-px w-12 bg-accent md:w-full"
         style={{
           transform: shown ? "scaleX(1)" : "scaleX(0)",
           transformOrigin: "left",

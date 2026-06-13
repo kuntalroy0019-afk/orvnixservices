@@ -81,9 +81,10 @@ export default function PillarTheater({ pillars }: { pillars: Pillar[] }) {
     // Stacked fallback: small screens & reduced motion
     return (
       <div ref={wrapRef} className="space-y-px bg-border">
-        {pillars.map((p) => (
+        {pillars.map((p, i) => (
           <div key={p.id} className="bg-stage p-7">
-            <h3 className="display text-3xl text-foreground/60">
+            <span className="font-display text-xs text-accent">0{i + 1}</span>
+            <h3 className="display mt-2 text-3xl text-foreground">
               {p.line1} {p.line2}
             </h3>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{p.body}</p>
