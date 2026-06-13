@@ -56,7 +56,7 @@ export default function Home() {
         <Process />
         <Benefits />
         <Comparison />
-        <Work />
+        <Work mobilePreview />
         <Workspace />
         <Studio />
         <Testimonials />

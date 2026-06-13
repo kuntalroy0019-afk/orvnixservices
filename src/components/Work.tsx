@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import SplitReveal from "@/components/SplitReveal";
@@ -78,7 +79,13 @@ const projects = [
   },
 ];
 
-export default function Work() {
+export default function Work({
+  mobilePreview = false,
+}: {
+  /** On the landing page, show only the first 3 concepts on mobile with a
+      "view all" link; the dedicated /work page passes nothing and shows all. */
+  mobilePreview?: boolean;
+}) {
   return (
     <section id="work" className="section-pad relative border-t border-border">
       <div className="px-5 sm:px-8">
@@ -105,7 +112,12 @@ export default function Work() {
 
         <div className="mt-[clamp(3rem,5vw,4.5rem)] grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <Reveal as="article" key={p.name} delay={(i % 3) * 0.07} className="group">
+            <Reveal
+              as="article"
+              key={p.name}
+              delay={(i % 3) * 0.07}
+              className={`group ${mobilePreview && i >= 3 ? "hidden sm:block" : ""}`}
+            >
               <div data-cursor="View" className="relative bg-stage">
                 <CurtainImage
                   src={p.img}
@@ -137,6 +149,16 @@ export default function Work() {
             </Reveal>
           ))}
         </div>
+
+        {mobilePreview && (
+          <Reveal className="mt-12 sm:hidden">
+            <Link href="/work" className="arrow-link text-sm text-foreground">
+              View all 9 concepts
+              <span className="arrow">→</span>
+              <span className="line" />
+            </Link>
+          </Reveal>
+        )}
       </div>
     </section>
   );

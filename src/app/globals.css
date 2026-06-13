@@ -116,7 +116,9 @@ body {
 
 /* Fluid section rhythm */
 .section-pad {
-  padding-block: clamp(5rem, 9vw, 8.5rem);
+  /* min lowered so small screens get a tighter rhythm; the 9vw term dominates
+     from ~890px up, so tablet/desktop spacing is unchanged. */
+  padding-block: clamp(3.25rem, 9vw, 8.5rem);
 }
 
 @keyframes marquee {

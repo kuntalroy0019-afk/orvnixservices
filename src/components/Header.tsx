@@ -22,11 +22,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock background scroll while the full-screen menu is open.
+  // Lock background scroll + allow Escape to close while the menu is open.
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.documentElement.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
@@ -50,7 +56,7 @@ export default function Header() {
         }`}
       >
       <nav className="flex h-16 items-center justify-between pl-5 sm:pl-8 md:h-[4.5rem]">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Orvnix home">
+        <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5" aria-label="Orvnix home">
           <span className="grid h-7 w-7 place-items-center bg-foreground text-background transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path
@@ -89,9 +95,10 @@ export default function Header() {
         </Link>
 
         <button
-          className="mr-5 flex h-9 w-9 items-center justify-center rounded-[3px] border border-border-strong md:hidden"
+          className="relative z-50 mr-5 flex h-9 w-9 items-center justify-center rounded-[3px] border border-border-strong md:hidden"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
         >
           <div className="space-y-1.5">
             <span
