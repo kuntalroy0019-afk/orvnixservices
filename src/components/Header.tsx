@@ -42,7 +42,7 @@ export default function Header() {
       <div
         aria-hidden
         className={`pointer-events-none fixed inset-x-0 top-0 z-40 h-28 transition-opacity duration-500 ${
-          scrolled ? "opacity-100" : "opacity-0"
+          scrolled && !open ? "opacity-100" : "opacity-0"
         }`}
         style={{
           background: "linear-gradient(to bottom, var(--background), transparent)",
@@ -50,7 +50,7 @@ export default function Header() {
       />
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-500 ${
-          scrolled
+          scrolled && !open
             ? "border-border bg-background/70 backdrop-blur-md"
             : "border-transparent bg-transparent"
         }`}
