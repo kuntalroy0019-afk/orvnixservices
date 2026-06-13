@@ -10,10 +10,12 @@ const dist = (a: V3, b: V3) =>
 /** A distinct wireframe primitive per discipline. */
 function shapeFor(kind: string): { verts: V3[]; edges: [number, number][] } {
   if (kind === "software") {
-    // cube lattice
+    // cube lattice — half-size 0.74 so the corners (0.74·√3 ≈ 1.28) sit in the
+    // same envelope as the other primitives and don't clip the drawing box.
+    const s = 0.74;
     const verts: V3[] = [
-      [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
-      [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1],
+      [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+      [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s],
     ];
     const edges: [number, number][] = [
       [0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4],
